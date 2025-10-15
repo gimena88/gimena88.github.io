@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>C.E.M.N.G. Dionisio de Herrera — Sitio Oficial</title>
+  <meta name="description" content="Sitio informativo del C.E.M.N.G. Dionisio de Herrera: historia, modalidades, actividades, proyección, ubicación, perfiles estudiantiles y contacto." />
+  <link rel="icon" href="LOGO_COLE.PNG">
+  <style>
+    /* ====== Paleta basada en el logo ====== */
+    :root{
+      --bg: #ffffff;             /* fondo claro para dar limpieza y contraste */
+      --card: #ffffff;           /* tarjetas blancas */
+      --text: #111827;           /* texto principal (gris muy oscuro) */
+      --muted: #4b5563;          /* texto secundario */
+      --brand: #c62828;          /* rojo principal del escudo */
+      --brand-2: #e53935;        /* rojo claro de acento */
+      --line: #e5e7eb;           /* bordes suaves */
+      --ok: #16a34a; --warn:#f59e0b; --bad:#dc2626;
+      --radius: 18px; --shadow: 0 10px 30px rgba(0,0,0,.08);
+      --maxw: 1100px;
+    }
+    *{box-sizing:border-box} html,body{height:100%}
+    body{margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, 'Helvetica Neue', Arial; background: var(--bg); color: var(--text); line-height:1.6}
+    img{max-width:100%; display:block}
+    a{color:var(--brand); text-decoration: none}
+
+    /* ====== Layout ====== */
+    .container{width:100%; max-width:var(--maxw); margin-inline:auto; padding: 0 20px}
+    header{position:sticky; top:0; z-index:50; backdrop-filter:saturate(1.2) blur(8px); border-bottom:1px solid var(--line); background:rgba(255,255,255,.8)}
+    .nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0; position:relative}
+    .brand{display:flex; align-items:center; gap:12px; color:inherit}
+    .brand-logo{width:44px; height:44px; border-radius:12px; overflow:hidden; display:grid; place-items:center; border:1px solid var(--line); background:#fff}
+    .brand-logo img{width:100%; height:100%; object-fit:cover}
+    .nav ul{display:flex; gap:18px; list-style:none; margin:0; padding:0}
+    .nav a{color:var(--text); opacity:.9}
+    .nav a:hover{opacity:1}
+    .btn{display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:12px; border:1px solid var(--line); background:#fff; color:var(--text); box-shadow:var(--shadow)}
+    .btn.cta{background:linear-gradient(135deg,var(--brand),var(--brand-2)); color:#fff; border-color:transparent}
+
+    /* ====== Hero ====== */
+    .hero{padding:56px 0 32px; background: radial-gradient(1200px 500px at 50% -80%, rgba(198,40,40,.10), transparent 60%)}
+    .hero-grid{display:grid; grid-template-columns: 1.2fr .8fr; gap:26px; align-items:center}
+    .kicker{display:inline-block; padding:6px 10px; border-radius:999px; background: rgba(229,57,53,.10); border:1px solid rgba(229,57,53,.35); font-size:12px; letter-spacing:.3px; color:#7f1d1d}
+    h1{font-size: clamp(28px, 4vw, 48px); line-height:1.1; margin:14px 0}
+    .hero p{color:var(--muted); margin:0 0 18px}
+    .hero .actions{display:flex; gap:12px; flex-wrap:wrap}
+
+    /* ====== Secciones / Tarjetas ====== */
+    section{padding:56px 0}
+    .cards{display:grid; grid-template-columns: repeat(3, 1fr); gap:18px}
+    .card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow)}
+    .card h3{margin:8px 0 6px}
+    .grid-2{display:grid; grid-template-columns: 1fr 1fr; gap:26px}
+    .pill{font-size:12px; padding:6px 10px; border-radius:999px; border:1px solid var(--line); color:#7f1d1d; background:rgba(229,57,53,.08)}
+
+    /* ====== Listas ====== */
+    .list{margin:0; padding-left:18px}
+    .list li{margin:6px 0}
+
+    /* ====== Flotantes (WhatsApp / Arriba) ====== */
+    .float-btn{position:fixed; right:22px; width:56px; height:56px; border-radius:999px; display:grid; place-items:center; box-shadow:0 10px 20px rgba(0,0,0,.18); border:0; cursor:pointer}
+    .float-wsp{bottom:22px; background:#25D366; color:#fff}
+    .float-top{bottom:90px; background:linear-gradient(135deg,var(--brand),var(--brand-2)); color:#fff; opacity:0; pointer-events:none; transition:opacity .2s ease}
+    .float-btn:focus-visible{outline:3px solid rgba(198,40,40,.4)}
+    .float-btn .tooltip{position:absolute; right:70px; background:#111827; color:#fff; padding:6px 10px; border-radius:8px; font-size:12px; opacity:0; transform:translateX(6px); transition:all .15s ease; white-space:nowrap}
+    .float-btn:hover .tooltip, .float-btn:focus .tooltip{opacity:1; transform:translateX(0)}
+
+    /* ====== Footer ====== */
+    .footer{padding:28px 0; border-top:1px solid var(--line); color:#6b7280}
+
+    /* ====== Menú móvil ====== */
+    .nav-toggle{display:none; align-items:center; justify-content:center; width:42px; height:42px; border-radius:10px; border:1px solid var(--line); background:#fff; color:var(--text)}
+    .nav-links{display:block}
+
+    /* ====== Responsive ====== */
+    @media (max-width: 920px){
+      .hero-grid, .grid-2{grid-template-columns: 1fr}
+      .cards{grid-template-columns: 1fr 1fr}
+    }
+    @media (max-width: 640px){
+      .nav ul{flex-direction:column}
+      .nav-toggle{display:inline-flex}
+      .nav-links{display:none; position:absolute; top:58px; left:0; right:0; background:#fff; border-bottom:1px solid var(--line); padding:12px 20px; box-shadow:0 8px 16px rgba(0,0,0,.08)}
+      .nav-links.open{display:block}
+      .cards{grid-template-columns: 1fr}
+      .btn{width:100%; justify-content:center}
+    }
+  </style>
+</head>
+<body>
+  <!-- ====== Navbar ====== -->
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#">
+        <div class="brand-logo"><img src="LOGO_COLE.PNG" alt="Escudo Dionisio de Herrera" /></div>
+        <strong>C.E.M.N.G. Dionisio de Herrera</strong>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="menu" title="Abrir menú">☰</button>
+      <nav id="menu" class="nav-links">
+        <ul>
+          <li><a href="#historia">Historia</a></li>
+          <li><a href="#modalidades">Modalidades</a></li>
+          <li><a href="#proyeccion">Proyección</a></li>
+          <li><a href="#actividades">Actividades</a></li>
+          <li><a href="#perfiles">Perfiles</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+      <a class="btn cta" href="#contacto">Inscripciones</a>
+    </div>
+  </header>
+
+  <!-- ====== Hero ====== -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="kicker">Calidad, Disciplina y Valores</span>
+        <h1>Formando líderes para Honduras desde 1993</h1>
+        <p>Educación con excelencia académica, formación humana y proyección cultural y deportiva.</p>
+        <div class="actions">
+          <a class="btn cta" href="#modalidades">Ver modalidades</a>
+          <a class="btn" href="#historia">Conoce nuestra historia</a>
+        </div>
+        <div style="display:flex; gap:10px; margin-top:16px; flex-wrap:wrap">
+          <span class="pill">Tercer Ciclo</span>
+          <span class="pill">BCH</span>
+          <span class="pill">BTP Contaduría y Finanzas</span>
+          <span class="pill">BTP Informática</span>
+        </div>
+      </div>
+      <div>
+        <img alt="Estudiantes y banda marcial" src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1200&auto=format&fit=crop" style="border-radius:var(--radius); border:1px solid var(--line)" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Historia ====== -->
+  <section id="historia">
+    <div class="container grid-2">
+      <div>
+        <h2>Historia del Instituto</h2>
+        <p>El instituto <strong>Dionisio de Herrera</strong> fue fundado en <strong>octubre de 1993</strong>, con el ideal de darle a la juventud de Ciudad Capital la oportunidad de recibir calidad educativa, basándose en la disciplina, valores morales, espirituales y culturales.</p>
+        <p>Con más de 20 años de funcionamiento, el Instituto Dionisio de Herrera ha formado a hombres y mujeres que hoy contribuyen al desarrollo de nuestra nación.</p>
+        <div class="card">
+          <h3>Equipo Directivo y Comunidad</h3>
+          <ul class="list">
+            <li><strong>Rectora:</strong> Licda. Michelle Ortega</li>
+            <li><strong>Director:</strong> Lic. Juan Carlos Castillo</li>
+            <li><strong>Subdirector:</strong> Lic. Daniel Barrientos</li>
+            <li><strong>Secretaría:</strong> Licda. Mariela Martínez</li>
+            <li><strong>Orientación y Psicología:</strong> Lcda. Geomar Pavón</li>
+            <li><strong>Población estudiantil:</strong> 300 estudiantes</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <h3>Ubicación</h3>
+          <p>Estamos en <strong>Barrio Abajo</strong>, a media cuadra de la <em>Iglesia El Calvario</em>, cerca del <em>Teatro Manuel Bonilla</em>.</p>
+          <div style="height:260px; border-radius:12px; overflow:hidden; border:1px solid var(--line); margin-top:10px">
+            <iframe title="Mapa" src="https://www.openstreetmap.org/export/embed.html?bbox=-87.231%2C14.059%2C-87.161%2C14.119&layer=mapnik" style="width:100%; height:100%; border:0"></iframe>
+          </div>
+          <p style="margin-top:10px">
+            <a class="btn" href="#contacto">Horarios y contacto</a>
+          </p>
+        </div>
+        <div class="card" style="margin-top:18px">
+          <h3>Homenaje a Dionisio de Herrera</h3>
+          <p><strong>José Dionisio de la Trinidad de Herrera y Díaz del Valle</strong> (9 de octubre de 1781, Choluteca – 13 de junio de 1850) fue abogado y político hondureño, representante del liberalismo y uno de los centroamericanos más ilustrados de su tiempo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Modalidades / Carreras ====== -->
+  <section id="modalidades">
+    <div class="container">
+      <h2>Modalidades y Carreras</h2>
+      <p class="muted">Programas en modalidad <strong>Presencial</strong> e <strong>ISEMED</strong>.</p>
+      <div class="cards" style="margin-top:16px">
+        <article class="card">
+          <div class="pill">Tercer Ciclo</div>
+          <h3>Educación Básica</h3>
+          <p>Formación integral en valores y competencias clave para el éxito en la media.</p>
+        </article>
+        <article class="card">
+          <div class="pill">BCH</div>
+          <h3>Bachillerato en Ciencias y Humanidades</h3>
+          <p>Base sólida en ciencias, letras y pensamiento crítico para estudios superiores.</p>
+        </article>
+        <article class="card">
+          <div class="pill">BTP</div>
+          <h3>Contaduría y Finanzas</h3>
+          <p>Competencias técnicas en registro contable, análisis financiero y gestión.</p>
+        </article>
+        <article class="card">
+          <div class="pill">BTP</div>
+          <h3>Informática</h3>
+          <p>Fundamentos de programación, bases de datos y soporte de TI.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Proyección ====== -->
+  <section id="proyeccion">
+    <div class="container grid-2">
+      <div>
+        <h2>Proyección Institucional</h2>
+        <p>El Instituto se proyecta a nivel local, regional, nacional e internacional a través de grupos artísticos y culturales, equipos de fútbol y futbolito, así como grupos de danza moderna.</p>
+        <p>La <strong>Banda Marcial</strong> ha representado con decoro y talento a la capital, recibiendo numerosos reconocimientos y premios. Es considerada una de las más destacadas a nivel nacional, obteniendo primeros lugares en diferentes ciudades.</p>
+      </div>
+      <div>
+        <div class="card">
+          <h3>Reconocimientos</h3>
+          <ul class="list">
+            <li>Premios especiales nacionales e internacionales</li>
+            <li>Primeros lugares en competencias de bandas marciales</li>
+            <li>Participación en múltiples departamentos del país</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Actividades Extracurriculares ====== -->
+  <section id="actividades">
+    <div class="container">
+      <h2>Actividades Extracurriculares</h2>
+      <div class="cards" style="margin-top:16px">
+        <article class="card">
+          <h3>Salidas y Viajes</h3>
+          <p>Visitas educativas y recreativas que fortalecen el aprendizaje y la convivencia.</p>
+        </article>
+        <article class="card">
+          <h3>Días Temáticos</h3>
+          <p>Día de color, día de pijama y día de fiesta para celebrar la identidad estudiantil.</p>
+        </article>
+        <article class="card">
+          <h3>Arte y Deporte</h3>
+          <p>Danza moderna, banda marcial y equipos deportivos institucionales.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Perfiles del Alumno ====== -->
+  <section id="perfiles">
+    <div class="container">
+      <h2>Perfiles del Alumno</h2>
+
+      <h3 style="margin-top:8px">Tercer Ciclo (Básica)</h3>
+      <div class="cards" style="margin-top:12px">
+        <article class="card">
+          <div class="pill">SÉPTIMO</div>
+          <h3>Perfil de 7º</h3>
+          <p>Alumno responsable, respetuoso y participativo; demuestra valores, interés por aprender y buena convivencia.</p>
+        </article>
+        <article class="card">
+          <div class="pill">OCTAVO</div>
+          <h3>Perfil de 8º</h3>
+          <p>Alumno autónomo, crítico y solidario; cumple sus deberes, trabaja en equipo y busca superarse cada día.</p>
+        </article>
+        <article class="card">
+          <div class="pill">NOVENO</div>
+          <h3>Perfil de 9º</h3>
+          <p>Alumno maduro, responsable y comprometido; demuestra liderazgo, valores y preparación para la educación media.</p>
+        </article>
+      </div>
+
+      <h3 style="margin-top:26px">Educación Media (Bachilleratos)</h3>
+      <div class="cards" style="margin-top:12px">
+        <article class="card">
+          <div class="pill">10º</div>
+          <h3>Décimo Grado</h3>
+          <p>Alumno responsable, maduro y perseverante; demuestra iniciativa, pensamiento crítico y compromiso con su desarrollo académico y personal.</p>
+        </article>
+        <article class="card">
+          <div class="pill">BCH</div>
+          <h3>Ciencias y Humanidades</h3>
+          <p>Debe ser analítico, responsable y solidario; con pensamiento crítico, valores firmes y compromiso con su formación académica y social.</p>
+        </article>
+        <article class="card">
+          <div class="pill">BTP</div>
+          <h3>Contaduría y Finanzas</h3>
+          <p>Debe ser ordenado, honesto y analítico; con responsabilidad, ética profesional y habilidad para manejar información financiera con precisión.</p>
+        </article>
+        <article class="card">
+          <div class="pill">BTP</div>
+          <h3>Informática</h3>
+          <p>Debe ser creativo, responsable y proactivo; con pensamiento lógico, trabajo en equipo y capacidad para resolver problemas tecnológicos.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Contacto ====== -->
+  <section id="contacto">
+    <div class="container grid-2">
+      <div>
+        <h2>Contacto y Horarios</h2>
+        <div class="card">
+          <h3>Información</h3>
+          <ul class="list">
+            <li><strong>Teléfono:</strong> <a href="tel:+50433901979">+504 3390-1979</a></li>
+            <li><strong>Email:</strong> <a href="mailto:educacionmedia011@yahoo.com">educacionmedia011@yahoo.com</a></li>
+            <li><strong>Facebook:</strong> <a target="_blank" href="https://www.facebook.com/share/1FrafGy8kb/">@C.E.M.N.G. Dionisio de Herrera</a></li>
+            <li><strong>Instagram:</strong> <a target="_blank" href="https://www.instagram.com/cemng.dionisio_herrera?igsh=ajBkY2VocWxrOWc3">@cemng.dionisio_herrera</a></li>
+            <li><strong>Ubicación:</strong> Barrio Abajo, media cuadra de la Iglesia El Calvario, cerca del Teatro Manuel Bonilla.</li>
+          </ul>
+        </div>
+        <div class="card" style="margin-top:18px">
+          <h3>Horarios de atención</h3>
+          <ul class="list">
+            <li>Lunes a Viernes: 8:00 AM – 4:00 PM</li>
+            <li>sábado: 11:00 AM – 3:00 PM</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <h3>Escríbenos</h3>
+          <form id="contactForm" novalidate>
+            <label>
+              Nombre
+              <input type="text" name="nombre" placeholder="Tu nombre" required />
+            </label>
+            <label>
+              Email
+              <input type="email" name="email" placeholder="tucorreo@ejemplo.com" required />
+            </label>
+            <label>
+              Mensaje
+              <textarea name="mensaje" rows="5" placeholder="¿En qué podemos ayudarte?" required></textarea>
+            </label>
+            <button class="btn cta" type="submit">Enviar</button>
+            <p id="formMsg" aria-live="polite" class="muted"></p>
+          </form>
+        </div>
+        <div class="card" style="margin-top:18px">
+          <h3>Inscripciones</h3>
+          <p>Solicita información sobre requisitos y proceso de admisión para Tercer Ciclo, BCH y BTP.</p>
+          <a class="btn" href="#modalidades">Explorar carreras</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container" style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap">
+      <span>© <span id="year"></span> C.E.M.N.G. Dionisio de Herrera</span>
+      <a href="#historia" class="muted">Volver arriba</a>
+    </div>
+  </footer>
+
+  <!-- ====== Botones flotantes ====== -->
+  <a class="float-btn float-wsp" href="https://wa.me/50433901979?text=Hola%20quisiera%20informaci%C3%B3n%20sobre%20inscripciones" target="_blank" aria-label="WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.52 3.48A11.78 11.78 0 0 0 12.06 0C5.58 0 .32 5.26.32 11.74c0 2.07.54 4.08 1.57 5.86L0 24l6.57-1.72a11.7 11.7 0 0 0 5.5 1.4h.01c6.48 0 11.74-5.26 11.74-11.74 0-3.14-1.22-6.08-3.3-8.16Zm-8.46 18.1h-.01a9.74 9.74 0 0 1-4.97-1.36l-.36-.21-3.9 1.02 1.04-3.8-.24-.39a9.71 9.71 0 0 1-1.49-5.23C2.13 6.36 6.42 2.07 12.06 2.07c2.6 0 5.05 1.01 6.89 2.85a9.62 9.62 0 0 1 2.85 6.89c0 5.64-4.29 9.83-9.74 9.83Zm5.36-7.33c-.29-.15-1.72-.85-1.98-.95-.27-.1-.47-.15-.67.15-.2.29-.77.95-.95 1.15-.18.2-.35.22-.64.07-.29-.15-1.22-.45-2.33-1.44-.86-.77-1.44-1.72-1.6-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.35.44-.53.15-.18.2-.29.29-.49.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.5-.17 0-.37 0-.57 0-.2 0-.52.08-.79.37-.27.29-1.04 1.02-1.04 2.49 0 1.46 1.07 2.88 1.22 3.08.15.2 2.11 3.22 5.11 4.52.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.08 1.72-.7 1.96-1.37.24-.67.24-1.25.17-1.37-.07-.12-.26-.2-.55-.35Z"/></svg>
+    <span class="tooltip">WhatsApp</span>
+  </a>
+  <button id="btnTop" class="float-btn float-top" type="button" aria-label="Arriba">
+    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 5l-9 9h6v5h6v-5h6z"/></svg>
+    <span class="tooltip">Arriba</span>
+  </button>
+
+  <script>
+    // Año dinámico
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Menú móvil
+    const toggle = document.querySelector('.nav-toggle');
+    const menu = document.querySelector('#menu');
+    if(toggle && menu){
+      toggle.addEventListener('click', ()=>{
+        const open = menu.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    }
+
+    // Validación + envío al correo institucional con mailto
+    const form = document.getElementById('contactForm');
+    const msg = document.getElementById('formMsg');
+    if(form){
+      form.addEventListener('submit', (e)=>{
+        e.preventDefault();
+        const data = Object.fromEntries(new FormData(form).entries());
+        const ok = data.nombre && data.email && data.mensaje;
+        if(!ok){
+          msg.textContent = 'Por favor completa todos los campos.';
+          msg.style.color = 'var(--bad)';
+          return;
+        }
+        const to = 'educacionmedia011@yahoo.com';
+        const subject = 'Contacto web — C.E.M.N.G. Dionisio de Herrera';
+        const body = `Nombre: ${data.nombre}%0D%0AEmail: ${data.email}%0D%0AMensaje:%0D%0A${encodeURIComponent(data.mensaje)}`;
+        const url = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${body}`;
+        window.location.href = url;
+        msg.textContent = '¡Gracias! Abriendo tu correo para enviar el mensaje…';
+        msg.style.color = 'var(--ok)';
+        setTimeout(()=>{ form.reset(); }, 500);
+      });
+    }
+
+    // Botón subir arriba: mostrar tras scroll y desplazamiento suave
+    const btnTop = document.getElementById('btnTop');
+    const toggleTopBtn = () => {
+      if(window.scrollY > 220){
+        btnTop.style.opacity = 1; btnTop.style.pointerEvents = 'auto';
+      } else { btnTop.style.opacity = 0; btnTop.style.pointerEvents = 'none'; }
+    };
+    window.addEventListener('scroll', toggleTopBtn);
+    btnTop.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+    toggleTopBtn();
+  </script>
+</body>
+</html>
