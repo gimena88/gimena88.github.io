@@ -9,13 +9,13 @@
   <style>
     /* ====== Paleta basada en el logo ====== */
     :root{
-      --bg: #ffffff;             /* fondo claro para dar limpieza y contraste */
-      --card: #ffffff;           /* tarjetas blancas */
-      --text: #111827;           /* texto principal (gris muy oscuro) */
-      --muted: #4b5563;          /* texto secundario */
-      --brand: #c62828;          /* rojo principal del escudo */
-      --brand-2: #e53935;        /* rojo claro de acento */
-      --line: #e5e7eb;           /* bordes suaves */
+      --bg: #ffffff;             
+      --card: #ffffff;          
+      --text: #111827;           
+      --muted: #4b5563;          
+      --brand: #c62828;          
+      --brand-2: #e53935;        
+      --line: #e5e7eb;           
       --ok: #16a34a; --warn:#f59e0b; --bad:#dc2626;
       --radius: 18px; --shadow: 0 10px 30px rgba(0,0,0,.08);
       --maxw: 1100px;
@@ -30,6 +30,13 @@
     header{position:sticky; top:0; z-index:50; backdrop-filter:saturate(1.2) blur(8px); border-bottom:1px solid var(--line); background:rgba(255,255,255,.8)}
     .nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0; position:relative}
     .brand{display:flex; align-items:center; gap:12px; color:inherit}
+.brand strong {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+
+
     .brand-logo{width:44px; height:44px; border-radius:12px; overflow:hidden; display:grid; place-items:center; border:1px solid var(--line); background:#fff}
     .brand-logo img{width:100%; height:100%; object-fit:cover}
     .nav ul{display:flex; gap:18px; list-style:none; margin:0; padding:0}
@@ -273,7 +280,7 @@
       <h3 style="margin-top:26px">Educación Media (Bachilleratos)</h3>
       <div class="cards" style="margin-top:12px">
         <article class="card">
-          <div class="pill">DÉCIMO</div>
+          <div class="pill">10º</div>
           <h3>Décimo Grado</h3>
           <p>Alumno responsable, maduro y perseverante; demuestra iniciativa, pensamiento crítico y compromiso con su desarrollo académico y personal.</p>
         </article>
@@ -305,7 +312,7 @@
           <h3>Información</h3>
           <ul class="list">
             <li><strong>Teléfono:</strong> <a href="tel:+50433901979">+504 3390-1979</a></li>
-            <li><strong>Email:</strong> <a href="mailto:educacionmedia011@gmail.com">educacionmedia011@gmail.com</a></li>
+            <li><strong>Email:</strong> <a href="mailto:educacionmedia011@yahoo.com">educacionmedia011@yahoo.com</a></li>
             <li><strong>Facebook:</strong> <a target="_blank" href="https://www.facebook.com/share/1FrafGy8kb/">@C.E.M.N.G. Dionisio de Herrera</a></li>
             <li><strong>Instagram:</strong> <a target="_blank" href="https://www.instagram.com/cemng.dionisio_herrera?igsh=ajBkY2VocWxrOWc3">@cemng.dionisio_herrera</a></li>
             <li><strong>Ubicación:</strong> Barrio Abajo, media cuadra de la Iglesia El Calvario, cerca del Teatro Manuel Bonilla.</li>
@@ -416,5 +423,3 @@
   </script>
 </body>
 </html>
-
-
